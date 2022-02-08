@@ -1,0 +1,13 @@
+body {
+    padding: 10px;
+}
+
+.form{
+    width: 20%;
+    margin-bottom: 10px;
+}
+
+#desc{
+    width: 50%;
+    height: 100px;
+}
