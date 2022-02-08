@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django import forms
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import User
@@ -13,9 +13,14 @@ class createform(forms.Form):
     description = forms.CharField(label="", widget=forms.TextInput(attrs={'placeholder':'Description'}))
     sbid = forms.CharField(label="", widget=forms.TextInput(attrs={'placeholder':'Starting Bid'}))
     img = forms.CharField(label="", widget=forms.TextInput(attrs={'placeholder':'Image URL'}))
+    category = forms.CharField(label="", widget=forms.TextInput(attrs={'placeholder':'Category'}))
 
 def index(request):
-    return render(request, "auctions/index.html")
+    queryset = Listing.objects.values_list()
+    return render(request, "auctions/index.html", {
+    "query": queryset,
+        })
+
 
 
 def login_view(request):
@@ -77,9 +82,21 @@ def create(request):
             title = form.cleaned_data["title"]
             description = form.cleaned_data["description"]
             sbid = form.cleaned_data["sbid"]
+            category = form.cleaned_data["category"]
             img = form.cleaned_data["img"]
-            listing = Listing(title = title, description = description, sbid = sbid, img = img)
+            print("lol" + img)
+            listing = Listing(title = title, description = description, sbid = sbid, img = img, category = category)
             listing.save()
-        return render(request, "auctions/index.html")
+        else:
+            title = form.cleaned_data["title"]
+            description = form.cleaned_data["description"]
+            sbid = form.cleaned_data["sbid"]
+            category = form.cleaned_data["category"]
+            img = "https://media.istockphoto.com/photos/dotted-grid-paper-background-texture-seamless-repeat-pattern-picture-id1320330053?b=1&k=20&m=1320330053&s=170667a&w=0&h=XisfN35UnuxAVP_sjq3ujbFDyWPurSfSTYd-Ll09Ncc="
+            print("lol" + img)
+            listing = Listing(title = title, description = description, sbid = sbid, img = img, category = category)
+            listing.save()
+        response = redirect('/')
+        return response
     else:
         return render(request, "auctions/create.html")

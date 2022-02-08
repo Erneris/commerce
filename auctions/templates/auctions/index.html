@@ -1,7 +1,20 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
+<div id ="con">
+  <h2>Active Listings</h2>
+    {% for x in query %}
 
-    TODO
+    <div id = "card" class="card" style="width: 18rem;">
+        <img style="width:286px;height:180px; class="card-img-top" src="{{ x.4 }}" alt="Item Image">
+        <div class="card-body">
+          <h5 class="card-title">{{ x.1 }}</h5>
+          <p class="card-text">{{ x.2 }}</p><br>
+          <p class="card-text"><b>Current bid:</b> {{ x.3 }}$</p><br>
+          <a href="#" id="but" class="btn btn-primary">Open Listing</a>
+          <a href="#" id="but" class="btn btn-primary">Add to watchlist</a>
+        </div>
+      </div>
+    </div>
+      {% endfor %}
 {% endblock %}
