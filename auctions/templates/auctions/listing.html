@@ -1,0 +1,23 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div style="margin-top:0px;" class="jumbotron">
+        <h2 class="display-3" style="margin:0px;">{{query.title}}</h2>
+        <h3 class="display-4">{{query.category}}</h3>
+        <p class="lead">{{query.description}}</p>
+        <img src="{{query.img}}" alt="{{query.title}}" width="400" height="400">
+        <hr class="my-4">
+        <h5>Starting bid: {{query.sbid}}$ <br>
+        <h5>Current bid: {{query.cbid}}$ <br>
+       
+            
+            <form action = "" method = "post">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{query.id}}">
+                <input type="number" name="bid" placeholder="Place bid" required="" maxlength="10" min="{{ query.cbid|add:"1" }}" class="form"><br>
+                <input type="submit" class="btn btn-primary" value="Place bid">
+            </form>
+      </div>
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+{% for x in query %}
+
+<div id = "card" class="card" style="width: 18rem;">
+    <img style="width:286px;height:180px; class="card-img-top" src="{{ x.img }}" alt="Item Image">
+    <div class="card-body">
+      <h5 class="card-title">{{ x.title}}</h5>
+      <p class="card-text">{{ x.description }}</p><br>
+      <p class="card-text"><b>Starting bid:</b> {{ x.sbid }}$</p><br>
+      <p class="card-text"><b>Current bid:</b> {{ x.cbid }}$</p><br>
+      <a href="/listings/{{x.id}}" id="but" class="btn btn-primary">Open Listing</a>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+
+
+{% endblock %}

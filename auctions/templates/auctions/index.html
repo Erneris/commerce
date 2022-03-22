@@ -10,9 +10,10 @@
         <div class="card-body">
           <h5 class="card-title">{{ x.1 }}</h5>
           <p class="card-text">{{ x.2 }}</p><br>
-          <p class="card-text"><b>Current bid:</b> {{ x.3 }}$</p><br>
-          <a href="#" id="but" class="btn btn-primary">Open Listing</a>
-          <a href="#" id="but" class="btn btn-primary">Add to watchlist</a>
+          <p class="card-text"><b>Starting bid:</b> {{ x.3 }}$</p><br>
+          <p class="card-text"><b>Current bid:</b> {{ x.6 }}$</p><br>
+          <a href="/listings/{{x.0}}" id="but" class="btn btn-primary">Open Listing</a>
+          <a href="/watchlistadd/{{x.0}}" id="but" class="btn btn-primary">Add to watchlist</a>
         </div>
       </div>
     </div>

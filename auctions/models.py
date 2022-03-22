@@ -12,3 +12,9 @@ class Listing(models.Model):
     sbid = models.CharField(max_length = 10)
     img = models.TextField(default="https://media.istockphoto.com/photos/dotted-grid-paper-background-texture-seamless-repeat-pattern-picture-id1320330053?b=1&k=20&m=1320330053&s=170667a&w=0&h=XisfN35UnuxAVP_sjq3ujbFDyWPurSfSTYd-Ll09Ncc=")
     category = models.CharField(max_length = 20)
+    cbid = models.CharField(max_length = 10, default = 0)
+
+class watchlist(models.Model):
+    uid = models.CharField(max_length = 20)
+    lid = models.CharField(max_length = 10)
+
